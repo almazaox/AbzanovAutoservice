@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:AbzanovAutoservice"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ServicePage">
+      Title="Услуги автосервися" FontFamily="Tm Cen MT"
+      IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
