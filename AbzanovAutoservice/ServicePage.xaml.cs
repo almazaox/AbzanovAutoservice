@@ -1,4 +1,4 @@
-﻿using AbzanovAutoservice.Resources;
+﻿//using AbzanovAutoservice.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ namespace AbzanovAutoservice
         public ServicePage()
         {
             InitializeComponent();
-            var currentServices = Abzanov_AutoserviceEntities.GetContext().Service.ToList();
+            var currentServices = Abzanov_AutoserviceEntities1.GetContext().Service.ToList();
             ServiceListView.ItemsSource = currentServices;
 
             ComboType.SelectedIndex = 0;
@@ -32,7 +32,7 @@ namespace AbzanovAutoservice
         }
         private void UpdateServices()
         {
-            var currentServices = Abzanov_AutoserviceEntities.GetContext().Service.ToList();
+            var currentServices = Abzanov_AutoserviceEntities1.GetContext().Service.ToList();
             if(ComboType.SelectedIndex == 0)
             {
                 currentServices = currentServices.Where(p => (p.Discount >= 0 && p.Discount <= 100)).ToList();
@@ -104,9 +104,41 @@ namespace AbzanovAutoservice
         {
             if(Visibility == Visibility.Visible)
             {
-                Abzanov_AutoserviceEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                ServiceListView.ItemsSource = Abzanov_AutoserviceEntities.GetContext().Service.ToList();
+                Abzanov_AutoserviceEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                ServiceListView.ItemsSource = Abzanov_AutoserviceEntities1.GetContext().Service.ToList();
             }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentService = (sender as Button).DataContext as Service;
+            var currentClientServices = Abzanov_AutoserviceEntities1.GetContext().ClientService.ToList();
+            currentClientServices = currentClientServices.Where(p => p.ServiceID == currentService.ID).ToList();
+            if (currentClientServices.Count != 0)
+                MessageBox.Show("Невозможно выполнить удаление, так как существует записи на эту услугу");
+            else
+            {
+                if (MessageBox.Show("Вы точно хотите выполнить удаление?", "Внимание",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        Abzanov_AutoserviceEntities1.GetContext().Service.Remove(currentService);
+                        Abzanov_AutoserviceEntities1.GetContext().SaveChanges();
+                        ServiceListView.ItemsSource = Abzanov_AutoserviceEntities1.GetContext().Service.ToList();
+                        UpdateServices();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+            }
+        }
+
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new SignUpPage((sender as Button).DataContext as Service));
         }
     }
 }

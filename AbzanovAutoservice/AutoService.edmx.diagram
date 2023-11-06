@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ec9b7cc899674cbf83ea533217de3849" Name="Diagram1" ZoomLevel="34">
+      <Diagram DiagramId="15f107ded066440f80b92bf61ef29d33" Name="Diagram1">
         <EntityTypeShape EntityType="Abzanov_AutoserviceModel.Client" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Abzanov_AutoserviceModel.ClientService" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Abzanov_AutoserviceModel.DocumentByService" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
@@ -18,13 +18,13 @@
         <EntityTypeShape EntityType="Abzanov_AutoserviceModel.Tag" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.FK_client_a_import_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ClientService_client_a_import" ManuallyRouted="false" />
-        <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ClientService_service_a_import" ManuallyRouted="false" />
+        <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ClientService_Service" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.FK_DocumentByService_ClientService" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ProductSale_ClientService" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.FK_Product_Manufacturer" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ProductPhoto_Product" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ProductSale_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ServicePhoto_service_a_import" ManuallyRouted="false" />
+        <AssociationConnector Association="Abzanov_AutoserviceModel.FK_ServicePhoto_Service" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.AttachedProduct" ManuallyRouted="false" />
         <AssociationConnector Association="Abzanov_AutoserviceModel.TagOfClient" ManuallyRouted="false" />
       </Diagram>

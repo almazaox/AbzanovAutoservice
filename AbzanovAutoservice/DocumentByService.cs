@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AbzanovAutoservice.Resources
+namespace AbzanovAutoservice
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductPhoto
+    public partial class DocumentByService
     {
         public int ID { get; set; }
-        public int ProductID { get; set; }
-        public string PhotoPath { get; set; }
+        public int ClientServiceID { get; set; }
+        public string DocumentPath { get; set; }
     
-        public virtual Product Product { get; set; }
+        public virtual ClientService ClientService { get; set; }
     }
 }

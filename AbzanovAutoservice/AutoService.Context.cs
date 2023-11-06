@@ -7,26 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AbzanovAutoservice.Resources
+namespace AutoService
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Abzanov_AutoserviceEntities : DbContext
+    public partial class Abzanov_AutoserviceEntities1 : DbContext
     {
-        //
-        private static Abzanov_AutoserviceEntities _context;
-
-        public static Abzanov_AutoserviceEntities GetContext()
-        {
-            if (_context == null)
-                _context = new Abzanov_AutoserviceEntities();
-            return _context;
-        }
-        //
-        public Abzanov_AutoserviceEntities()
-            : base("name=Abzanov_AutoserviceEntities")
+        public Abzanov_AutoserviceEntities1()
+            : base("name=Abzanov_AutoserviceEntities1")
         {
         }
     

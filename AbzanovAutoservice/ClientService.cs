@@ -7,31 +7,31 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AbzanovAutoservice.Resources
+namespace AbzanovAutoservice
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Service
+    public partial class ClientService
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Service()
+        public ClientService()
         {
-            this.ClientService = new HashSet<ClientService>();
-            this.ServicePhoto = new HashSet<ServicePhoto>();
+            this.DocumentByService = new HashSet<DocumentByService>();
+            this.ProductSale = new HashSet<ProductSale>();
         }
     
         public int ID { get; set; }
-        public string Title { get; set; }
-        public decimal Cost { get; set; }
-        public string DurationInSeconds { get; set; }
-        public string Description { get; set; }
-        public Nullable<int> Discount { get; set; }
-        public string MainImagePath { get; set; }
+        public int ServiceID { get; set; }
+        public int ClientID { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public string Comment { get; set; }
     
+        public virtual Client Client { get; set; }
+        public virtual Service Service { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientService> ClientService { get; set; }
+        public virtual ICollection<DocumentByService> DocumentByService { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServicePhoto> ServicePhoto { get; set; }
+        public virtual ICollection<ProductSale> ProductSale { get; set; }
     }
 }

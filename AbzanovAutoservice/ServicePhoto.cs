@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AbzanovAutoservice.Resources
+namespace AbzanovAutoservice
 {
     using System;
     using System.Collections.Generic;

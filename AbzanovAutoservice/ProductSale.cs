@@ -7,24 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AbzanovAutoservice.Resources
+namespace AbzanovAutoservice
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Tag
+    public partial class ProductSale
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tag()
-        {
-            this.Client = new HashSet<Client>();
-        }
-    
         public int ID { get; set; }
-        public string Title { get; set; }
-        public string Color { get; set; }
+        public System.DateTime SaleDate { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
+        public Nullable<int> ClientServiceID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
+        public virtual ClientService ClientService { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
