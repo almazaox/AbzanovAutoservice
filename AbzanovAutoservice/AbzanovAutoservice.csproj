@@ -65,60 +65,60 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AbzanovAutoservice.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AbzanovAutoservice.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AbzanovAutoservice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AbzanovAutoservice.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AbzanovAutoservice.edmx</DependentUpon>
+    </Compile>
     <Compile Include="AddEditPage.xaml.cs">
       <DependentUpon>AddEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientService.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentByService.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gender.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
+    </Compile>
     <Compile Include="Manager.cs" />
-    <Compile Include="Resources\AbzanovModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AbzanovModel.Context.tt</DependentUpon>
+    <Compile Include="Manufacturer.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
     </Compile>
-    <Compile Include="Resources\AbzanovModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
+    <Compile Include="Product.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
     </Compile>
-    <Compile Include="Resources\AbzanovModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AbzanovModel.edmx</DependentUpon>
+    <Compile Include="ProductPhoto.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Client.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
+    <Compile Include="ProductSale.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
     </Compile>
-    <Compile Include="Resources\ClientService.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\DocumentByService.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Gender.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Manufacturer.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Product.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ProductPhoto.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ProductSale.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Service.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\ServicePhoto.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Tag.cs">
-      <DependentUpon>AbzanovModel.tt</DependentUpon>
+    <Compile Include="Service.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
     </Compile>
     <Compile Include="ServicePage.xaml.cs">
       <DependentUpon>ServicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServicePhoto.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tag.cs">
+      <DependentUpon>AbzanovAutoservice.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
       <SubType>Designer</SubType>
@@ -159,17 +159,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="AbzanovAutoservice.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AbzanovAutoservice.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AbzanovAutoservice.edmx.diagram">
+      <DependentUpon>AbzanovAutoservice.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <EntityDeploy Include="Resources\AbzanovModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AbzanovModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Resources\AbzanovModel.edmx.diagram">
-      <DependentUpon>AbzanovModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -179,19 +179,19 @@
     <Resource Include="Resources\service_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\AbzanovModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AbzanovModel.Context.cs</LastGenOutput>
-      <DependentUpon>AbzanovModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Resources\AbzanovModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AbzanovModel.edmx</DependentUpon>
-      <LastGenOutput>AbzanovModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="AbzanovAutoservice.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AbzanovAutoservice.edmx</DependentUpon>
+      <LastGenOutput>AbzanovAutoservice.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AbzanovAutoservice.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AbzanovAutoservice.edmx</DependentUpon>
+      <LastGenOutput>AbzanovAutoservice.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
