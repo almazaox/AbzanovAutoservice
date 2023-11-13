@@ -1,7 +1,9 @@
 ﻿//using AbzanovAutoservice.Resources;
+using AbzanovAutoservice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace AbzanovAutoservice
 {
     /// <summary>
@@ -21,6 +24,11 @@ namespace AbzanovAutoservice
     /// </summary>
     public partial class ServicePage : Page
     {
+        int CountRecords;
+        int CountPage;
+        int CurrentPage = 0;
+        List<Service> CurrentPageList = new List<Service>();
+        List<Service> TableList;
         public ServicePage()
         {
             InitializeComponent();
@@ -33,7 +41,7 @@ namespace AbzanovAutoservice
         private void UpdateServices()
         {
             var currentServices = Abzanov_AutoserviceEntities1.GetContext().Service.ToList();
-            if(ComboType.SelectedIndex == 0)
+            if (ComboType.SelectedIndex == 0)
             {
                 currentServices = currentServices.Where(p => (p.Discount >= 0 && p.Discount <= 100)).ToList();
             }
@@ -58,16 +66,20 @@ namespace AbzanovAutoservice
                 currentServices = currentServices.Where(p => (p.Discount >= 70 && p.Discount <= 100)).ToList();
             }
             currentServices = currentServices.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
-            if(RButtonDown.IsChecked.Value) {
+            if (RButtonDown.IsChecked.Value)
+            {
                 currentServices = currentServices.OrderByDescending(p => p.Cost).ToList();
             }
             if (RButtonUp.IsChecked.Value)
             {
                 currentServices = currentServices.OrderBy(p => p.Cost).ToList();
             }
+            
             ServiceListView.ItemsSource = currentServices;
+            TableList = currentServices;
+            ChangePage(0, 0);
         }
-      
+
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -84,7 +96,7 @@ namespace AbzanovAutoservice
         {
             UpdateServices();
         }
-        
+
         private void RButtonDown_Checked(object sender, RoutedEventArgs e)
         {
             UpdateServices();
@@ -102,11 +114,12 @@ namespace AbzanovAutoservice
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(Visibility == Visibility.Visible)
+            if (Visibility == Visibility.Visible)
             {
                 Abzanov_AutoserviceEntities1.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 ServiceListView.ItemsSource = Abzanov_AutoserviceEntities1.GetContext().Service.ToList();
             }
+            UpdateServices();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -140,5 +153,97 @@ namespace AbzanovAutoservice
         {
             Manager.MainFrame.Navigate(new SignUpPage((sender as Button).DataContext as Service));
         }
+        private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
+        }
+        private void LeftDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(1, null);
+        }
+
+        private void RightDirButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePage(2, null);
+        }
+        private void ChangePage(int direction, int? selectedPage)
+        {
+            CurrentPageList.Clear();// начальная очистка листа
+            CountRecords = TableList.Count;//определение количества записей во всем списке
+            //определение кол-ва страниц
+            if (CountRecords % 10 > 0)
+                CountPage = CountRecords / 10 + 1;
+            else
+                CountPage = CountRecords / 10;
+            Boolean Ifupdate = true;
+            //Проверка на правильность - если
+            //CurrentPage(номар текушей страница) "правильный"
+            int min;
+            if (selectedPage.HasValue)
+            {
+                if (selectedPage >= 0 && selectedPage <= CountPage)
+                {
+                    CurrentPage = (int)selectedPage;
+                    min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
+                    for (int i = CurrentPage * 10; i < min; i++)
+                        CurrentPageList.Add(TableList[i]);
+                }
+            }
+            else //если нажата стрелка
+            {
+                switch (direction)
+                {
+                    case 1://наката кнопка "Предидущая страница"
+                        if (CurrentPage > 0)
+                        {
+                            CurrentPage--;
+                            min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
+                            for (int i = CurrentPage * 10; i < min; i++)
+                            {
+                                CurrentPageList.Add(TableList[i]);
+                            }
+                        }
+                        else
+                        {
+                            Ifupdate = false;
+                        }
+                        break;
+                    case 2:
+                        if (CurrentPage < CountPage - 1)
+                        {
+                            CurrentPage++;
+                            min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
+                            for (int i = CurrentPage * 10; i < min; i++)
+                            {
+                                CurrentPageList.Add(TableList[i]);
+                            }
+                        }
+                        else
+                        {
+                            Ifupdate = false;
+                        }
+                        break;
+                }
+            }
+            if (Ifupdate)
+            {
+                PageListBox.Items.Clear();
+                for (int i = 1; i <= CountPage; i++)
+                {
+                    PageListBox.Items.Add(i);
+                }
+                PageListBox.SelectedIndex = CurrentPage;
+
+                min = CurrentPage * 10 + 10 < CountRecords ? CurrentPage * 10 + 10 : CountRecords;
+                TBCount.Text = min.ToString();
+                TBAllRecords.Text = " из  " + CountRecords.ToString();
+
+
+                ServiceListView.ItemsSource = CurrentPageList;
+                ServiceListView.Items.Refresh();
+            }
+        }
+
+       
     }
 }
