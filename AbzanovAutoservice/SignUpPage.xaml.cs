@@ -75,12 +75,17 @@ namespace AbzanovAutoservice
                 TBEnd.Text = "";
             else
             {
-                string[] start = s.Split(new char[] {':'});
+                string[] start = s.Split(new char[] { ':' });
                 int startHour = Convert.ToInt32(start[0].ToString())*60;
                 int startMin = Convert.ToInt32(start[1].ToString());
 
-                int sum = startHour * startMin + _currentServise.Duration;
+                int sum = startHour + startMin + _currentServise.Duration;
+                
                 int EndHour = sum / 60;
+                if(EndHour >= 24)
+                {
+                    EndHour -= 24;
+                }
                 int EndMin = sum % 60;
                 s = EndHour.ToString() + ":" + EndMin.ToString();
                 TBEnd.Text = s;
